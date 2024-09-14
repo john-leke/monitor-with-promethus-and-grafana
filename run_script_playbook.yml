@@ -1,0 +1,21 @@
+---
+- name: Install Prometheus on control node
+  hosts: controlnode
+  become: yes
+  tasks:
+    - name: Upload and execute Prometheus installation script
+      script: ./install_prometheus.sh
+
+- name: Install node export on remote nodes
+  hosts: servernode
+  become: yes
+  tasks:
+    - name: Upload and execute node exporter installation script
+      script: ./install_nodeexporter
+
+- name: Install grafana
+  hosts: servernode
+  become: yes
+  tasks:
+    - name: Upload and execute grafana installation script
+      script: ./install_grafana
